@@ -1,26 +1,26 @@
 import unittest
 import random
 import math
-from triangle import triangle, ozhidanie, dispertion
+from figure import figure, ozhidanie, dispertion
 
 class TestCircleSimple(unittest.TestCase):
     
     def setUp(self):
         random.seed(42)  # для повторяемости
 
-    def test_triangle_basic(self):
-        """Тест функции triangle: трегуольник целиком внутри прямоугольника"""
+    def test_figure_basic(self):
+        """Тест функции figure : фигура целиком внутри прямоугольника"""
         a, b, = 5, 5
-        x1, y1, x2, y2, x3, y3 = 0, 0, 1, 0, 0, 1
+        vertices = [(0, 0), (1, 0), (0, 1)]
         N = 10000
         
         # Запускаем несколько раз и проверяем
         results = []
         for i in range(10):
-            S = triangle(a, b, x1, y1, x2, y2, x3, y3, N)
+            S = figure(a, b, vertices, N)
             results.append(S)
         
-        # Среднее должно быть близко к 0.5
+        # Среднее должно быть близко к 0,5
         mean_result = sum(results) / len(results)
         self.assertAlmostEqual(mean_result, 0.5, delta=0.2)
 
